@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.assignment.assignment.custom.OverDuePerMonthCount;
 import com.assignment.assignment.models.Maintenance;
 import com.assignment.assignment.models.OverdueAsset;
 import com.assignment.assignment.repositories.OverdueAssetRepository;
@@ -53,7 +54,12 @@ public class OverdueAssetController {
 		OverdueAsset overdueAsset = new OverdueAsset(o.getId_asset(), o.getOverdue_month(), o.getOverdue_num_day());
 		return this.overdueAssetRepository.save(overdueAsset);
 	}
-}
+	
+	@GetMapping(path = "listAssetOverdue")
+	public List<OverDuePerMonthCount> listAssetOverdue(){
+		return overdueAssetRepository.countOverduePerMonth();
+	}
+} 
 
 class PaginationAssetOverdue {
 	private List<OverdueAsset> list;
