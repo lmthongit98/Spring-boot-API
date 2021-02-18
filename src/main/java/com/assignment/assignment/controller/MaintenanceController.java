@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.assignment.assignment.custom.CountAssetStatus;
 import com.assignment.assignment.models.Maintenance;
 import com.assignment.assignment.repositories.MaintenanceRepository;
 import com.assignment.assignment.service.MaintenanceService;
@@ -62,6 +64,11 @@ public class MaintenanceController {
 	@GetMapping("overdueList")
 	public List<Object> Custom() {
 		return maintenanceRepository.listAssetOverdue();
+	}
+	
+	@GetMapping("countassetstatus")
+	public List<CountAssetStatus> countAssetStatus() {
+		return maintenanceRepository.countAssetStatus();
 	}
 }
 
